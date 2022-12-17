@@ -14,92 +14,127 @@ class _HomePageState extends State<HomePage> {
     final widthScreen = MediaQuery.of(context).size.width;
     final heightScreen = MediaQuery.of(context).size.height;
 
-    Widget bottomMenu() {
-      return Container(
-        height: heightScreen * 8.65 / 100,
-        width: widthScreen,
-        color: darkLightColor,
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Container(
-            height: 28,
-            width: 28,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/icon/home_active.png'))),
-          ),
-          Container(
-            height: 28,
-            width: 28,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/icon/discover.png'))),
-          ),
-          Container(
-            height: 28,
-            width: 28,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/icon/favorite.png'))),
-          ),
-          Container(
-            height: 28,
-            width: 28,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/icon/profile.png'))),
-          ),
-        ]),
+    Widget appBar() {
+      return AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.search),
+        ),
+        centerTitle: true,
+        title: Image(
+          image: AssetImage('assets/spotify_logo_vector.png'),
+          fit: BoxFit.contain,
+          width: 108,
+          height: 33,
+        ),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
       );
     }
 
-    Widget vectorLogo() {
+    Widget nowPlaying() {
       return Container(
-        width: widthScreen * 18.31 / 100,
-        height: heightScreen * 3.91 / 100,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/spotify_logo_vector.png'))),
-      );
-    }
-
-    Widget nowPLaying() {
-      return Container(
-        width: widthScreen * 82 / 100,
-        height: heightScreen * 20 / 100,
-        decoration: BoxDecoration(
-            color: primaryColor, borderRadius: BorderRadius.circular(30)),
+        height: 183,
+        width: 325,
         child: Stack(children: [
-          Container(
-            width: widthScreen * 37 / 100,
-            padding: EdgeInsets.only(left: 15, top: 28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'New Album ',
-                  style: fontWhite.copyWith(
-                      fontSize: 10, fontWeight: FontWeight.bold),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  'Happier Than Ever',
-                  style: fontWhite.copyWith(
-                      fontSize: 19, fontWeight: FontWeight.bold),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  'Billie Eilish',
-                  style: fontWhite.copyWith(
-                      fontSize: 10, fontWeight: FontWeight.bold),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: 325,
+              height: 118,
+              decoration: BoxDecoration(
+                  color: primaryColor, borderRadius: BorderRadius.circular(30)),
+            ),
+          ),
+          Image(image: AssetImage('assets/billie_02.png')),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              padding: EdgeInsets.only(left: 20),
+              width: 147,
+              height: 118,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'New Album ',
+                      style: fontWhite.copyWith(
+                          fontSize: 10, fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      'Happier Than Ever',
+                      style: fontWhite.copyWith(
+                          fontSize: 19, fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      'Billie Eilish',
+                      style: fontWhite.copyWith(
+                          fontSize: 10, fontWeight: FontWeight.bold),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ]),
             ),
           )
         ]),
+      );
+    }
+
+    Widget categoryMenu() {
+      return Container(
+        padding: EdgeInsets.only(left: 35),
+        height: 27,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            Text(
+              'News',
+              style:
+                  fontWhite.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: 47,
+            ),
+            Text(
+              'Video',
+              style:
+                  fontGrey.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: 47,
+            ),
+            Text(
+              'Artist',
+              style:
+                  fontGrey.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: 47,
+            ),
+            Text(
+              'Podcast',
+              style:
+                  fontGrey.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: 47,
+            ),
+            Text(
+              'Play List',
+              style:
+                  fontGrey.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              width: 47,
+            ),
+          ],
+        ),
       );
     }
 
@@ -109,14 +144,15 @@ class _HomePageState extends State<HomePage> {
       required String imageUrl,
     }) {
       return Container(
-        width: widthScreen * 24.92 / 100,
+        width: 147,
         child: Stack(children: [
           Container(
-            width: widthScreen * 24.92 / 100,
-            height: heightScreen * 22 / 100,
+            width: 147,
+            height: 185,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(image: AssetImage(imageUrl))),
+                borderRadius: BorderRadius.circular(30),
+                image: DecorationImage(
+                    image: AssetImage(imageUrl), fit: BoxFit.cover)),
           ),
           Positioned(
             child: Text(
@@ -150,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                   )),
             ),
             bottom: 50,
-            right: 5,
+            right: 10,
           )
         ]),
       );
@@ -194,180 +230,152 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
+    Widget bottomMenu() {
+      return Container(
+        height: 73,
+        width: widthScreen,
+        color: darkLightColor,
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+          Container(
+            height: 28,
+            width: 28,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/icon/home_active.png'))),
+          ),
+          Container(
+            height: 28,
+            width: 28,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/icon/discover.png'))),
+          ),
+          Container(
+            height: 28,
+            width: 28,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/icon/favorite.png'))),
+          ),
+          Container(
+            height: 28,
+            width: 28,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/icon/profile.png'))),
+          ),
+        ]),
+      );
+    }
+
     return Scaffold(
-        backgroundColor: darkBg,
-        body: Stack(
-          children: [
-            ListView(
-              padding: EdgeInsets.only(
-                  left: widthScreen * 4.75 / 100, top: heightScreen * 2 / 100),
+      backgroundColor: darkBg,
+      body: Container(
+          width: widthScreen,
+          height: heightScreen,
+          child: SafeArea(
+            child: Stack(
               children: [
-                SizedBox(
-                  height: heightScreen * 2.26 / 100,
-                ),
-                Container(
-                  width: widthScreen * 55.08 / 100,
-                  height: heightScreen * 30 / 100,
-                  child: Stack(
-                    children: [
+                ListView(children: [
+                  // header start
+                  Container(
+                    height: 183,
+                    width: widthScreen,
+                    child: Stack(children: [
+                      appBar(),
+                      Align(
+                        alignment: Alignment.center,
+                        child: nowPlaying(),
+                      )
+                    ]),
+                  ),
+                  // header end
+                  SizedBox(height: 41),
+                  // category menu start
+                  categoryMenu(),
+                  // category menu end
+                  SizedBox(
+                    height: 31,
+                  ),
+                  // album menu start
+                  Container(
+                    padding: EdgeInsets.only(left: 28),
+                    height: 250,
+                    child:
+                        ListView(scrollDirection: Axis.horizontal, children: [
+                      albumPicture(
+                          artist: 'Billi Eilish',
+                          album: 'Bad Guy',
+                          imageUrl: 'assets/billie_album.png'),
+                      SizedBox(
+                        width: 14,
+                      ),
+                      albumPicture(
+                          artist: 'Drake',
+                          album: 'Scorpion',
+                          imageUrl: 'assets/drake_album.png'),
+                      SizedBox(
+                        width: 14,
+                      ),
+                      albumPicture(
+                          artist: 'Billi Eilish',
+                          album: 'WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?',
+                          imageUrl: 'assets/billie_album_02.png'),
+                      SizedBox(
+                        width: 14,
+                      ),
+                      albumPicture(
+                          artist: 'Undefined',
+                          album: 'Unknown',
+                          imageUrl: 'assets/billie_album.png'),
+                      SizedBox(
+                        width: 14,
+                      ),
+                    ]),
+                  ),
+                  // album menu end
+                  SizedBox(
+                    height: 37,
+                  ),
+                  // playlist start
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 34),
+                    child: Column(children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.search,
-                                color: whiteColor,
-                              )),
-                          SizedBox(
-                            width: widthScreen * 25 / 100,
+                          Text(
+                            'Playlist',
+                            style: fontWhite.copyWith(
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          vectorLogo(),
-                          SizedBox(
-                            width: widthScreen * 25 / 100,
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.more_vert,
-                                color: whiteColor,
-                              ))
+                          Text(
+                            'See More',
+                            style: fontGrey.copyWith(
+                                fontSize: 12, fontWeight: FontWeight.w400),
+                          )
                         ],
                       ),
-                      Positioned(
-                        child: nowPLaying(),
-                        left: 20,
-                        bottom: 0,
-                      ),
-                      Positioned(
-                        child: Image(
-                          image: AssetImage('assets/billie_02.png'),
-                          width: widthScreen * 85 / 100,
-                        ),
-                        bottom: 0,
-                      )
-                    ],
+                      listMusic(),
+                      listMusic(),
+                      listMusic(),
+                      listMusic(),
+                    ]),
                   ),
-                ),
-                SizedBox(
-                  height: heightScreen * 4.98 / 100,
-                ),
-                Container(
-                  height: 32,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      SizedBox(
-                        width: widthScreen * 5 / 100,
-                      ),
-                      Text(
-                        'News',
-                        style: fontWhite.copyWith(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: widthScreen * 8.47 / 100,
-                      ),
-                      Text(
-                        'Video',
-                        style: fontGrey.copyWith(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: widthScreen * 8.47 / 100,
-                      ),
-                      Text(
-                        'Artist',
-                        style: fontGrey.copyWith(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: widthScreen * 8.47 / 100,
-                      ),
-                      Text(
-                        'Podcast',
-                        style: fontGrey.copyWith(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: widthScreen * 8.47 / 100,
-                      ),
-                      Text(
-                        'Play List',
-                        style: fontGrey.copyWith(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: widthScreen * 8.47 / 100,
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(left: widthScreen * 5 / 100),
-                  height: heightScreen * 30 / 100,
-                  child: ListView(scrollDirection: Axis.horizontal, children: [
-                    albumPicture(
-                        artist: 'Billi Eilish',
-                        album: 'Bad Guy',
-                        imageUrl: 'assets/billie_album.png'),
-                    SizedBox(
-                      width: widthScreen * 5 / 100,
-                    ),
-                    albumPicture(
-                        artist: 'Drake',
-                        album: 'Scorpion',
-                        imageUrl: 'assets/drake_album.png'),
-                    SizedBox(
-                      width: widthScreen * 5 / 100,
-                    ),
-                    albumPicture(
-                        artist: 'Billi Eilish',
-                        album: 'WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?',
-                        imageUrl: 'assets/billie_album_02.png'),
-                    SizedBox(
-                      width: widthScreen * 5 / 100,
-                    ),
-                    albumPicture(
-                        artist: 'Undefined',
-                        album: 'Unknown',
-                        imageUrl: 'assets/billie_album.png')
-                  ]),
-                ),
-                SizedBox(
-                  height: heightScreen * 4.38 / 100,
-                ),
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: widthScreen * 5 / 100),
-                  child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Playlist',
-                          style: fontWhite.copyWith(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'See More',
-                          style: fontGrey.copyWith(
-                              fontSize: 12, fontWeight: FontWeight.w400),
-                        )
-                      ],
-                    ),
-                    listMusic(),
-                    listMusic(),
-                    listMusic(),
-                    listMusic(),
-                  ]),
-                ),
+                  // playlist end
+                  SizedBox(
+                    height: 73,
+                  )
+                ]),
+                // appbar botom start
+                Positioned(
+                  child: bottomMenu(),
+                  bottom: 0,
+                )
+                // appbar botom end
               ],
             ),
-            Positioned(
-              child: bottomMenu(),
-              bottom: 0,
-            ),
-          ],
-        ));
+          )),
+    );
   }
 }
