@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:remake_spotify/pages/music_page.dart';
 import 'package:remake_spotify/style.dart';
 
 class HomePage extends StatefulWidget {
@@ -194,6 +195,10 @@ class _HomePageState extends State<HomePage> {
 
     Widget listMusic() {
       return ListTile(
+        onTap: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const MusicPage()));
+        },
         leading: Container(
           height: 40,
           width: 40,
