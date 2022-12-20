@@ -1,16 +1,6 @@
-# remake_spotify
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Hello, this project is my training material in learning flutter.
+this project is not an application that is full of functions, I only apply the design from figma and then implement it into flutter.
+I applied a design from someone, here's the design he made:
+https://www.figma.com/community/file/1172466818809176172
+so this application is only a display.
+if there is writing code that is not quite right or can be improved again, I'm happy to accept
